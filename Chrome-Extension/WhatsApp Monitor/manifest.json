@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+	"name": "TrackWapp Online Monitor for WhatsApp",
+	"description": "Free Online Monitor WhatsApp Web",
+	"version": "3.3",
+	"author": "Rizwan Ahmad",
+
+
+  "action": {
+    "default_title": "Start WhatsApp Online Monitor",
+ "default_popup": "popup.html" 
+},
+       
+
+	"icons": {
+		
+		"64": "images/icons/64.png",
+		"128": "images/icons/128.png"
+	},
+
+	"web_accessible_resources": [{
+    "resources": ["*.js","*.mp3"],
+    "matches": ["<all_urls>"]
+  }],
+
+	"content_scripts": [
+        {
+            "matches": ["*://web.whatsapp.com/*"],
+            "js": ["online.js","main.js","protobuf.js","websocket.js"],
+             "run_at":    "document_end"
+        }
+    ],
+    
+    "permissions": [
+      "scripting",
+	"storage",
+	"activeTab",
+  "power",
+      "notifications"
+	],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+	
+    
+    "host_permissions": [
+    "*://web.whatsapp.com/*","https://notify.run/*","https://trackwapp.online/*"
+  ]
+
+}
